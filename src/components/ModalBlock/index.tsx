@@ -20,9 +20,13 @@ export const ModalBlock: React.FC<ModalBlockProps> = ({
                                                           visible = false,
                                                           children,
                                                       }: ModalBlockProps): React.ReactElement | null => {
+
+
     if (!visible) {
         return null;
     }
+
+
 
     return (
         <Dialog open={visible} onClose={onClose} aria-labelledby="form-dialog-title">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactElement} from "react";
 import {makeStyles, Typography} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -84,7 +84,7 @@ export const useStyles = makeStyles((theme) => ({
 
 }))
 
-function SignIn() {
+export const SignIn:React.FC = ():ReactElement => {
 
 
 
