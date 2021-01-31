@@ -11,15 +11,31 @@ import PersonIcon from '@material-ui/icons/Person';
 import Container from '@material-ui/core/Container';
 import grey from '@material-ui/core/colors/grey'
 import CommentIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
-const useHomeStyles = makeStyles(() => ({
+import RepostIcon from '@material-ui/icons/Repeat';
+import ReplyIcon from '@material-ui/icons/Reply';
+import LikeIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import classNames from 'classnames'
+import {Tweet} from "../components/Tweet";
+import {SideMenu} from "../components/SideMenu";
+
+export const useHomeStyles = makeStyles(() => ({
     sideMenuList: {
         listStyle: 'none',
         padding: 0,
         margin: 0,
     },
     sideMenuListItem: {
-        display: 'flex',
-        alignItems: 'center'
+      '& div' :{
+          display:'inline-flex',
+          alignItems:'center',
+          padding:'0 10px' ,
+          borderRadius:'30px',
+          height:'58px',
+          '&:hover':{
+              backgroundColor: 'rgba(29,161,242,0.1)'
+          }
+
+      }
     },
     logo: {
         fontSize: 36,
@@ -45,9 +61,23 @@ const useHomeStyles = makeStyles(() => ({
 
         }
     },
-    tweetsUserName:{
-        color:grey[500],
-        marginLeft:'5px'
+    tweet: {
+        paddingTop:'15px',
+        cursor: 'pointer',
+        '&:hover': {
+            backgroundColor: 'rgb(245,248,250)'
+        }
+
+    },
+
+    tweetsUserName: {
+        color: grey[500],
+        marginLeft: '5px'
+    },
+    tweetFooter: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        maxWidth: '450px'
     }
 }))
 
@@ -70,80 +100,43 @@ export const Home = () => {
     return <Container className={classes.wrapper} maxWidth={'lg'}>
         <Grid container spacing={3}>
             <Grid item xs={2}>
-                <ul className={classes.sideMenuList}>
-                    <li className={classes.sideMenuListItem}>
-                        <IconButton aria-label='delete'>
-                            <TwitterIcon className={classes.logo} color='primary'/>
-                        </IconButton>
-                    </li>
-                    <li className={classes.sideMenuListItem}>
-                        <IconButton aria-label='delete'>
-                            <SearchIcon color='primary'/>
-                        </IconButton>
-                        <Typography variant='h6'>Поиск</Typography>
-                    </li>
-                    <li className={classes.sideMenuListItem}>
-                        <IconButton aria-label='delete'>
-                            <NotificationsIcon color='primary'/>
-                        </IconButton>
-                        <Typography variant='h6'>Уведомления</Typography>
-                    </li>
-                    <li className={classes.sideMenuListItem}>
-                        <IconButton aria-label='delete'>
-                            <EmailIcon color='primary'/>
-                        </IconButton>
-                        <Typography variant='h6'>Сообщения</Typography>
-                    </li>
-                    <li className={classes.sideMenuListItem}>
-                        <IconButton aria-label='delete'>
-                            <BookmarkIcon color='primary'/>
-                        </IconButton>
-                        <Typography variant='h6'>Закладки</Typography>
-                    </li>
-                    <li className={classes.sideMenuListItem}>
-                        <IconButton aria-label='delete'>
-                            <ListAltIcon color='primary'/>
-                        </IconButton>
-                        <Typography variant='h6'>Список</Typography>
-                    </li>
-                    <li className={classes.sideMenuListItem}>
-                        <IconButton aria-label='delete'>
-                            <PersonIcon color='primary'/>
-                        </IconButton>
-                        <Typography variant='h6'>Профиль</Typography>
-                    </li>
-
-                </ul>
+                <SideMenu classes={classes}/>
             </Grid>
             <Grid item xs={6}>
                 <Paper className={classes.tweetsWrapper} variant={'outlined'}>
-                    <Paper className={classes.tweetsHeader} variant={'outlined'}>
+                    <Paper className={classNames(classes.tweetsHeader)} variant={'outlined'}>
                         <Typography variant={'h6'}>
                             Главная
                         </Typography>
                     </Paper>
-                    <Paper className={classes.tweetsHeader} variant={'outlined'}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={1}>
-                                <Avatar alt="User Avatar" src="https://res.cloudinary.com/diassavrz/image/upload/v1609213797/evgeny_c9e2be0814.png" />
-                            </Grid>
-                            <Grid item xs={11}>
-                                <Typography>
-                                    <b>Evgeny1998</b>
-                                    <span className={classes.tweetsUserName}>@tolmachev</span>
-                                </Typography>
-                                <Typography variant={'body1'} gutterBottom>
-                                    In web development our world changes quickly, but what can we pin down what 2021 will bring? By scrutinizing data from the 2020 developer…
-                                </Typography>
-                                <div>
-                                    <IconButton>
-                                        <CommentIcon style={{fontSize:'16px' }}/>
-                                        <span>1</span>
-                                    </IconButton>
-                                </div>
-                            </Grid>
-                        </Grid>
-                    </Paper>
+                    <Tweet
+                        text={'In web development our world changes quickly, but what can we pin down what 2021 will bring? By scrutinizing data from the 2020 developer…'}
+                        classes={classes} user={{
+                        fullname: 'Evgeny Tolmachev',
+                        username: 'Tolmachev1998',
+                        avatarUrl:'https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large'
+                    }}/>
+                    <Tweet
+                        text={'In web development our world changes quickly, but what can we pin down what 2021 will bring? By scrutinizing data from the 2020 developer…'}
+                        classes={classes} user={{
+                        fullname: 'Evgeny Tolmachev',
+                        username: 'Tolmachev1998',
+                        avatarUrl:'https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large'
+                    }}/>
+                    <Tweet
+                        text={'In web development our world changes quickly, but what can we pin down what 2021 will bring? By scrutinizing data from the 2020 developer…'}
+                        classes={classes} user={{
+                        fullname: 'Evgeny Tolmachev',
+                        username: 'Tolmachev1998',
+                        avatarUrl:'https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large'
+                    }}/>
+                    <Tweet
+                        text={'In web development our world changes quickly, but what can we pin down what 2021 will bring? By scrutinizing data from the 2020 developer…'}
+                        classes={classes} user={{
+                        fullname: 'Evgeny Tolmachev',
+                        username: 'Tolmachev1998',
+                        avatarUrl:'https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large'
+                    }}/>
                 </Paper>
             </Grid>
             <Grid item xs={3}>
