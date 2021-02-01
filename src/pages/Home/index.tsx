@@ -2,9 +2,7 @@ import {
     Grid,
     InputAdornment,
     Paper,
-    Theme,
     Typography,
-    withStyles
 } from '@material-ui/core'
 import React from 'react'
 import SearchIcon from "@material-ui/icons/Search";
@@ -37,7 +35,10 @@ export const Home = (): React.ReactElement => {
                     </Paper>
                     <Paper>
                         <div className={classes.addForm}>
-                            <AddTweetForm classes={classes} />
+                            <div className={classes.addForm}>
+                                <AddTweetForm classes={classes} />
+                            </div>
+
                         </div>
                         <div className={classes.addFormBottomLine} />
                     </Paper>
