@@ -2,58 +2,107 @@ import { colors, makeStyles, Theme } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 
 export const useHomeStyles = makeStyles((theme: Theme) => ({
+
+    sideMenuList: {
+        listStyle: 'none',
+        padding: 0,
+        margin: 0,
+        maxWidth:'230px'
+    },
+    sideMenuListItem: {
+        '& div' :{
+            display:'inline-flex',
+            alignItems:'center',
+            padding:'0 10px' ,
+            borderRadius:'30px',
+            height:'50px',
+            cursor:'pointer',
+            transition:'background-color 0.15s ease-in-out',
+            '&:hover':{
+                backgroundColor: 'rgba(29,161,242,0.1)',
+                '& h6':{
+                    color:theme.palette.primary.main
+                }
+
+            }
+
+        }
+    },
+    logo: {
+        fontSize: 36,
+        margin: '10px'
+    },
+    addFormBottomLine: {
+        height: 12,
+        backgroundColor: '#E6ECF0',
+    },
+    addForm: {
+        padding: 20,
+    },
+    wrapper: {
+        height: '100vh'
+    },
+    tweetsWrapper: {
+        borderRadius: '0px',
+        height: '100%',
+        borderTop: '0',
+        borderBottom: '0',
+    },
+    tweetsHeader: {
+        borderRadius: '0px',
+        borderLeft: '0',
+        borderRight: '0',
+        borderTop: '0',
+        padding: '10px 15px',
+        '& h6': {
+            fontWeight: 800,
+
+        }
+    },
+    tweet: {
+        paddingTop:'15px',
+        cursor: 'pointer',
+        '&:hover': {
+            backgroundColor: 'rgb(245,248,250)'
+        }
+
+    },
+
+    tweetsUserName: {
+        color: grey[500],
+        marginLeft: '5px'
+    },
+    tweetFooter: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        maxWidth: '450px',
+        position:'relative',
+        left:'-13px'
+
+    },
+    SideMenuTweetButton:{
+        padding:theme.spacing(3.2 ),
+        marginTop:theme.spacing(2)
+    },
+
+
+
+
+
+
     centered: {
         position: 'absolute',
         left: '50%',
         top: '50%',
         transform: 'translate(-50%, -50%)',
     },
-    wrapper: {
-        height: '100vh',
-    },
-    logo: {
-        margin: '10px 0',
-    },
+
+
     logoIcon: {
         fontSize: 36,
     },
-    sideMenuList: {
-        position: 'sticky',
-        top: 0,
-        listStyle: 'none',
-        padding: 0,
-        margin: 0,
-        maxWidth: 230,
-    },
-    sideMenuListItem: {
-        '& a': {
-            color: 'inherit',
-            textDecoration: 'none',
-        },
-        cursor: 'pointer',
-        '&:hover': {
-            '& div': {
-                backgroundColor: 'rgba(29, 161, 242, 0.1)',
-                '& h6': {
-                    color: theme.palette.primary.main,
-                },
-                '& svg path': {
-                    fill: theme.palette.primary.main,
-                },
-            },
-        },
 
-        '& div': {
-            display: 'inline-flex',
-            alignItems: 'center',
-            position: 'relative',
-            padding: '0 25px 0 20px',
-            borderRadius: 30,
-            height: 50,
-            marginBottom: 15,
-            transition: 'background-color 0.1s ease-in-out',
-        },
-    },
+
     sideMenuListItemLabel: {
         fontWeight: 700,
         fontSize: 20,
@@ -67,50 +116,16 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         padding: theme.spacing(3.2),
         marginTop: theme.spacing(2),
     },
-    tweetsWrapper: {
-        borderRadius: 0,
-        minHeight: '100vh',
-        borderTop: '0',
-        borderBottom: '0',
-    },
+
     tweetsCentred: {
         marginTop: 50,
         textAlign: 'center',
     },
-    tweetsHeader: {
-        display: 'flex',
-        alignItems: 'center',
-        flex: 1,
-        borderTop: '0',
-        borderLeft: '0',
-        borderRight: '0',
-        borderRadius: 0,
-        padding: '10px 15px',
-        '& h6': {
-            fontWeight: 800,
-        },
-    },
-    tweetsHeaderUser: {
-        display: 'flex',
-        alignItems: 'center',
-    },
+
     tweetsHeaderBackButton: {
         marginRight: 20,
     },
-    tweet: {
-        display: 'flex',
-        cursor: 'pointer',
-        alignItems: 'flex-start',
-        paddingTop: 15,
-        paddingLeft: 20,
-        '&:hover': {
-            backgroundColor: 'rgb(245, 248, 250)',
-        },
-    },
-    tweetWrapper: {
-        color: 'inherit',
-        textDecoration: 'none',
-    },
+
     tweetAvatar: {
         width: theme.spacing(6.5),
         height: theme.spacing(6.5),
@@ -123,13 +138,6 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     },
     tweetContent: {
         flex: 1,
-    },
-    tweetFooter: {
-        display: 'flex',
-        position: 'relative',
-        left: -13,
-        justifyContent: 'space-between',
-        maxWidth: 450,
     },
     tweetUserName: {
         color: grey[500],
@@ -197,9 +205,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
             textDecoration: 'none',
         },
     },
-    addForm: {
-        padding: 20,
-    },
+
     addFormBody: {
         display: 'flex',
         width: '100%',
@@ -209,6 +215,8 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
+
+
     addFormBottomActions: {
         marginTop: 10,
         paddingLeft: 70,
@@ -221,10 +229,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         fontFamily: 'inherit',
         resize: 'none',
     },
-    addFormBottomLine: {
-        height: 12,
-        backgroundColor: '#E6ECF0',
-    },
+
     addFormCircleProgress: {
         position: 'relative',
         width: 20,

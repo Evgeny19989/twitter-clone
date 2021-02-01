@@ -2,13 +2,16 @@ import React, {ReactElement} from 'react'
 import IconButton from "@material-ui/core/IconButton";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import SearchIcon from "@material-ui/icons/Search";
-import {Typography} from "@material-ui/core";
+import {Hidden, Typography} from "@material-ui/core";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import EmailIcon from "@material-ui/icons/Email";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import PersonIcon from "@material-ui/icons/Person";
-import {useHomeStyles} from "../pages/Home";
+
+import {Button} from '@material-ui/core';
+import CreateIcon from '@material-ui/icons/Create';
+import { useHomeStyles } from '../pages/Home/theme';
 
 interface SideMenuProps {
     classes: ReturnType<typeof useHomeStyles>;
@@ -20,61 +23,83 @@ export const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): Rea
             <ul className={classes.sideMenuList}>
                 <li className={classes.sideMenuListItem}>
                     <div>
-                        <IconButton aria-label='delete'>
-                            <TwitterIcon className={classes.logo} color='primary'/>
-                        </IconButton>
+
+                        <TwitterIcon style={{marginRight: '10px'}} className={classes.logo} color='primary'/>
+
                     </div>
 
                 </li>
                 <li className={classes.sideMenuListItem}>
                     <div>
 
-                        <SearchIcon color='primary'/>
+                        <SearchIcon style={{marginRight: '10px'}} color='primary'/>
+                        <Hidden smDown>
+                            <Typography variant='h6'>Поиск</Typography>
+                        </Hidden>
 
-                        <Typography variant='h6'>Поиск</Typography>
                     </div>
 
                 </li>
                 <li className={classes.sideMenuListItem}>
                     <div>
 
-                        <NotificationsIcon color='primary'/>
-
-                        <Typography variant='h6'>Уведомления</Typography>
+                        <NotificationsIcon style={{marginRight: '10px'}} color='primary'/>
+                        <Hidden smDown>
+                            <Typography variant='h6'>Уведомления</Typography>
+                        </Hidden>
                     </div>
 
                 </li>
                 <li className={classes.sideMenuListItem}>
                     <div>
 
-                        <EmailIcon color='primary'/>
+                        <EmailIcon style={{marginRight: '10px'}} color='primary'/>
+                        <Hidden smDown>
+                            <Typography variant='h6'>Сообщения</Typography>
+                        </Hidden>
 
-                        <Typography variant='h6'>Сообщения</Typography>
                     </div>
                 </li>
                 <li className={classes.sideMenuListItem}>
                     <div>
 
-                        <BookmarkIcon color='primary'/>
+                        <BookmarkIcon style={{marginRight: '10px'}} color='primary'/>
+                        <Hidden smDown>
+                            <Typography variant='h6'>Закладки</Typography>
+                        </Hidden>
 
-                        <Typography variant='h6'>Закладки</Typography>
+                    </div>
+                </li>
+                <li className={classes.sideMenuListItem}>
+                    <div>
+                        <ListAltIcon style={{marginRight: '10px'}} color='primary'/>
+                        <Hidden smDown>
+                            <Typography variant='h6'>Список</Typography>
+                        </Hidden>
+
                     </div>
                 </li>
                 <li className={classes.sideMenuListItem}>
                     <div>
 
-                        <ListAltIcon color='primary'/>
+                        <PersonIcon style={{marginRight: '10px'}} color='primary'/>
+                        <Hidden smDown>
+                            <Typography variant='h6'>Профиль</Typography>
+                        </Hidden>
 
-                        <Typography variant='h6'>Список</Typography>
                     </div>
                 </li>
                 <li className={classes.sideMenuListItem}>
-                    <div>
+                    <Button className={classes.SideMenuTweetButton} variant='contained' color='primary'
+                            fullWidth={true}>
+                        <Hidden smDown>
+                            Твитнуть
+                        </Hidden>
+                        <Hidden mdUp>
 
-                        <PersonIcon color='primary'/>
-
-                        <Typography variant='h6'>Профиль</Typography>
-                    </div>
+                            <CreateIcon/>
+                        </Hidden>
+                    </Button>
                 </li>
 
             </ul>

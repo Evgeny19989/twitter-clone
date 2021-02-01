@@ -6,7 +6,8 @@ import RepostIcon from '@material-ui/icons/Repeat';
 import ReplyIcon from '@material-ui/icons/Reply';
 import LikeIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import classNames from 'classnames'
-import {useHomeStyles} from "../../pages/Home";
+import { useHomeStyles } from '../../pages/Home/theme';
+
 
 interface TweetProps {
     text:string;
@@ -22,17 +23,21 @@ interface TweetProps {
 export const Tweet : React.FC<TweetProps>  = ({classes, text,user}:TweetProps):React.ReactElement => {
     return <div>
         <Paper className={classNames( classes.tweet ,  classes.tweetsHeader)} variant={'outlined'}>
-            <Grid container spacing={3}>
-                <Grid item xs={1}>
-                    <Avatar alt={`Аватарка пользователя ${user.fullname}`} src={user.avatarUrl} />
-                </Grid>
-                <Grid item xs={11}>
-                    <Typography>
-                        <b>{user.fullname}</b>
-                        <span className={classes.tweetsUserName}>@{user.username}</span>&nbsp;
-                        <span className={classes.tweetsUserName}>. </span>&nbsp;
-                        <span className={classes.tweetsUserName}> </span>&nbsp;
-                    </Typography>
+
+<div style={{display:'flex',
+    alignItems:'center',
+    marginBottom:'15px'
+
+}}>
+    <Avatar style={{ marginRight:'15px'}} alt={`Аватарка пользователя ${user.fullname}`} src={user.avatarUrl} />
+    <Typography>
+        <b>{user.fullname}</b>
+        <span className={classes.tweetsUserName}>@{user.username}</span>&nbsp;
+        <span className={classes.tweetsUserName}>. </span>&nbsp;
+        <span className={classes.tweetsUserName}>1 ч </span>&nbsp;
+    </Typography>
+</div>
+
                     <Typography variant={'body1'} gutterBottom>
                         {text}
                     </Typography>
@@ -54,8 +59,8 @@ export const Tweet : React.FC<TweetProps>  = ({classes, text,user}:TweetProps):R
                             <ReplyIcon style={{fontSize:'20px' }}/>
                         </IconButton>
                     </div>
-                </Grid>
-            </Grid>
+
+
         </Paper>
     </div>
 }
