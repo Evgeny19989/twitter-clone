@@ -10,6 +10,7 @@ import { useHomeStyles } from '../../pages/Home/theme';
 
 
 interface TweetProps {
+    _id:string;
     text:string;
     classes : ReturnType<typeof useHomeStyles>;
     user:{

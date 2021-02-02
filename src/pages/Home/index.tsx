@@ -5,7 +5,17 @@ import {
     Typography,
 } from '@material-ui/core'
 import React from 'react'
+
+import ListItem from '@material-ui/core/ListItem/ListItem';
+import Divider from '@material-ui/core/Divider/Divider';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar/Avatar';
+import ListItemText from '@material-ui/core/ListItemText/ListItemText';
+import List from '@material-ui/core/List/List';
+import Button from '@material-ui/core/Button/Button';
+
 import SearchIcon from "@material-ui/icons/Search";
+import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 import Container from '@material-ui/core/Container';
 import classNames from 'classnames'
 import {Tweet} from "../../components/Tweet";
@@ -17,6 +27,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { FetchTweets } from '../../store/ducks/tweets/actionCreators';
 import {selectTweetsItems, selectIsTweetsLoading} from "../../store/ducks/tweets/selectors";
 import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 
 export const Home = (): React.ReactElement => {
@@ -57,6 +68,7 @@ export const Home = (): React.ReactElement => {
                         (
                         tweets.map((el,index) =>{
                         return <Tweet
+                            _id={el._id}
                             key={el._id}
                             text={el.text}
                             classes={classes} user={el.user}/>
@@ -81,6 +93,35 @@ export const Home = (): React.ReactElement => {
                     fullWidth
                 />
 
+{/*<FullTweet/>*/}
+
+                <Paper className={classes.rightSideBlock}>
+                    <Paper className={classes.rightSideBlockHeader} variant="outlined">
+                        <b>Кого читать</b>
+                    </Paper>
+                    <List>
+                        <ListItem className={classes.rightSideBlockItem}>
+                            <ListItemAvatar>
+                                <Avatar
+                                    alt="Remy Sharp"
+                                    src="https://pbs.twimg.com/profile_images/1267938486566428673/US6KRPbA_normal.jpg"
+                                />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary="Dock Of Shame"
+                                secondary={
+                                    <Typography component="span" variant="body2" color="textSecondary">
+                                        @FavDockOfShame
+                                    </Typography>
+                                }
+                            />
+                            <Button color="primary">
+                                <PersonAddIcon />
+                            </Button>
+                        </ListItem>
+                        <Divider component="li" />
+                    </List>
+                </Paper>
 
             </Grid>
         </Grid>
