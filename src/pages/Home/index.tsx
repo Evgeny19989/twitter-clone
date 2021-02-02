@@ -10,16 +10,24 @@ import Container from '@material-ui/core/Container';
 import classNames from 'classnames'
 import {Tweet} from "../../components/Tweet";
 import {SideMenu} from "../../components/SideMenu";
-import { AddTweetForm } from '../../components/AddTweetForm';
-import { useHomeStyles } from './theme';
-import { SearchTextField } from '../../components/SearchTextField';
-
-
-
+import {AddTweetForm} from '../../components/AddTweetForm';
+import {useHomeStyles} from './theme';
+import {SearchTextField} from '../../components/SearchTextField';
+import {useDispatch, useSelector} from "react-redux";
+import { FetchTweets } from '../../store/ducks/tweets/actionCreators';
+import {selectTweetsItems, selectIsTweetsLoading} from "../../store/ducks/tweets/selectors";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 export const Home = (): React.ReactElement => {
     const classes = useHomeStyles()
+    const dispatch = useDispatch()
+    const tweets = useSelector(selectTweetsItems)
+    const isLoading = useSelector(selectIsTweetsLoading)
+
+    React.useEffect(() => {
+        dispatch(FetchTweets())
+    }, [dispatch])
 
     return <Container className={classes.wrapper} maxWidth={'lg'}>
         <Grid container spacing={3}>
@@ -28,7 +36,7 @@ export const Home = (): React.ReactElement => {
             </Grid>
             <Grid item xs={6}>
                 <Paper className={classes.tweetsWrapper} variant={'outlined'}>
-                    <Paper className={classNames(classes.tweetsHeader)} variant={'outlined'}>
+                    <Paper style={{zIndex:444}} className={classNames(classes.tweetsHeader)} variant={'outlined'}>
                         <Typography variant={'h6'}>
                             Главная
                         </Typography>
@@ -36,52 +44,37 @@ export const Home = (): React.ReactElement => {
                     <Paper>
                         <div className={classes.addForm}>
                             <div className={classes.addForm}>
-                                <AddTweetForm classes={classes} />
+                                <AddTweetForm classes={classes}/>
                             </div>
 
                         </div>
-                        <div className={classes.addFormBottomLine} />
+                        <div className={classes.addFormBottomLine}/>
                     </Paper>
 
-                    <Tweet
-                        text={'In web development our world changes quickly, but what can we pin down what 2021 will bring? By scrutinizing data from the 2020 developer…'}
-                        classes={classes} user={{
-                        fullname: 'Evgeny Tolmachev',
-                        username: 'Tolmachev1998',
-                        avatarUrl:'https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large'
-                    }}/>
-                    <Tweet
-                        text={'In web development our world changes quickly, but what can we pin down what 2021 will bring? By scrutinizing data from the 2020 developer…'}
-                        classes={classes} user={{
-                        fullname: 'Evgeny Tolmachev',
-                        username: 'Tolmachev1998',
-                        avatarUrl:'https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large'
-                    }}/>
-                    <Tweet
-                        text={'In web development our world changes quickly, but what can we pin down what 2021 will bring? By scrutinizing data from the 2020 developer…'}
-                        classes={classes} user={{
-                        fullname: 'Evgeny Tolmachev',
-                        username: 'Tolmachev1998',
-                        avatarUrl:'https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large'
-                    }}/>
-                    <Tweet
-                        text={'In web development our world changes quickly, but what can we pin down what 2021 will bring? By scrutinizing data from the 2020 developer…'}
-                        classes={classes} user={{
-                        fullname: 'Evgeny Tolmachev',
-                        username: 'Tolmachev1998',
-                        avatarUrl:'https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large'
-                    }}/>
+                    { isLoading ?
+                        (<CircularProgress className={classes.tweetsCentred} /> )
+                        :
+                        (
+                        tweets.map((el,index) =>{
+                        return <Tweet
+                            key={el._id}
+                            text={el.text}
+                            classes={classes} user={el.user}/>
+                    })
+                        )
+                    }
+
                 </Paper>
             </Grid>
             <Grid item xs={3}>
 
-                <SearchTextField
+                <SearchTextField  style={{position:'sticky' , top:'0'}}
                     variant="outlined"
                     placeholder="Поиск по Твиттеру"
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <SearchIcon />
+                                <SearchIcon/>
                             </InputAdornment>
                         ),
                     }}

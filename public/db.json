@@ -1,0 +1,93 @@
+{
+  "tweets": [
+    {
+      "_id": "6018ec6443aea482ddcaabec",
+      "text": "Laborum in aliquip duis nostrud sunt esse duis ipsum culpa pariatur labore incididunt aute aute. Sint velit exercitation ullamco excepteur exercitation et proident. Voluptate quis mollit sit irure nisi ea nulla proident veniam cillum et minim aliquip aliqua. Qui proident culpa sit ea tempor consequat. Anim tempor irure duis minim non officia consequat sit officia culpa deserunt mollit exercitation.",
+      "user": {
+        "fullname": "Higgins, Ballard",
+        "username": "Therese",
+        "avatarUrl": "https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large"
+      }
+    },
+    {
+      "_id": "6018ec640d5feea509ff6d58",
+      "text": "Ea esse irure reprehenderit elit culpa eu. Qui adipisicing officia ad minim laborum. Amet ea Lorem qui sint dolore duis laborum veniam officia exercitation. Sint reprehenderit culpa ipsum deserunt in officia. Pariatur eu excepteur anim anim voluptate id reprehenderit.",
+      "user": {
+        "fullname": "Oneal, Wynn",
+        "username": "Fox",
+        "avatarUrl": "https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large"
+      }
+    },
+    {
+      "_id": "6018ec6468a996e5f14b226f",
+      "text": "Reprehenderit ut Lorem pariatur officia commodo quis adipisicing culpa irure qui aute magna nostrud. Nulla do exercitation laboris sint. Sint velit Lorem nisi fugiat reprehenderit mollit minim non labore cillum magna Lorem excepteur. Occaecat id consequat aliqua exercitation est ullamco aute. Laborum nisi id voluptate irure nisi et.",
+      "user": {
+        "fullname": "Catalina, Hampton",
+        "username": "Peggy",
+        "avatarUrl": "https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large"
+      }
+    },
+    {
+      "_id": "6018ec642331e502c1152d17",
+      "text": "Amet culpa voluptate do nulla fugiat consectetur veniam non nulla. Est ea eiusmod excepteur ipsum eu. Nulla velit laboris quis do est. Aute in cupidatat exercitation laborum. Quis est labore culpa ex id Lorem deserunt officia occaecat Lorem incididunt fugiat.",
+      "user": {
+        "fullname": "Lourdes, Kim",
+        "username": "Esperanza",
+        "avatarUrl": "https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large"
+      }
+    },
+    {
+      "_id": "6018ec644783889619af0f8d",
+      "text": "Cillum laboris ut irure do culpa. Aliqua id esse id consectetur proident. Qui cillum proident excepteur sint dolore occaecat tempor consectetur commodo et est ipsum. Dolore eiusmod proident tempor pariatur do sint ullamco. Ad tempor id nulla ut commodo incididunt id fugiat ad est et ad.",
+      "user": {
+        "fullname": "Decker, Diaz",
+        "username": "Lang",
+        "avatarUrl": "https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large"
+      }
+    },
+    {
+      "_id": "6018ec641889c74728d1c0cd",
+      "text": "Cupidatat ea ea non tempor ipsum laborum consequat. Eiusmod esse est incididunt minim aliquip. Amet voluptate eiusmod aute magna commodo incididunt pariatur in ea nisi. Mollit minim voluptate ad commodo sunt cupidatat in. Aliquip exercitation eu Lorem adipisicing consequat labore laborum nostrud enim labore fugiat velit commodo.",
+      "user": {
+        "fullname": "Miller, Mcdowell",
+        "username": "Valerie",
+        "avatarUrl": "https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large"
+      }
+    },
+    {
+      "_id": "6018ec64ed736424ee192fa3",
+      "text": "Cillum enim excepteur incididunt do aute aliqua irure fugiat anim culpa. Excepteur consectetur excepteur excepteur esse nisi non Lorem nostrud ad eiusmod tempor esse anim. Sint fugiat ex exercitation sint aute commodo ea do pariatur ut ipsum quis. Nostrud eu laboris consectetur fugiat quis elit. Est nisi adipisicing anim ea nostrud aliqua reprehenderit est occaecat voluptate enim sunt.",
+      "user": {
+        "fullname": "Margarita, Salas",
+        "username": "Shanna",
+        "avatarUrl": "https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large"
+      }
+    },
+    {
+      "_id": "6018ec64b13a775677f725e9",
+      "text": "Aliquip nostrud fugiat eu pariatur. Adipisicing consequat laboris eiusmod deserunt esse consequat sit. Tempor nisi eiusmod duis incididunt proident fugiat esse eiusmod quis cupidatat enim. Cillum consectetur reprehenderit magna occaecat fugiat commodo sit magna Lorem. Laboris consequat elit sint qui do nulla non ut sint cupidatat eiusmod veniam ad.",
+      "user": {
+        "fullname": "Gordon, Craig",
+        "username": "Concepcion",
+        "avatarUrl": "https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large"
+      }
+    },
+    {
+      "_id": "6018ec647c70e085be00a287",
+      "text": "Incididunt mollit commodo cupidatat ea eu exercitation occaecat occaecat. Cupidatat ullamco sit officia in sint voluptate nulla exercitation nulla officia dolor proident ut enim. Esse culpa ex voluptate non aute in aute cillum mollit eu et ea est qui. Ut cupidatat sint consequat cupidatat elit excepteur ea aute consectetur irure exercitation eiusmod. Mollit amet adipisicing culpa eiusmod sit dolore minim.",
+      "user": {
+        "fullname": "Clemons, Singleton",
+        "username": "Tammi",
+        "avatarUrl": "https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large"
+      }
+    }
+  ],
+  "themes": [],
+  "users" : [
+    {
+      "fullname": "Higgins, Ballard",
+      "username": "Therese",
+      "avatarUrl": "https://pbs.twimg.com/media/Ea2MA_eWAAEFRcD.jpg:large"
+    }
+  ]
+}

@@ -53,7 +53,10 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         borderLeft: '0',
         borderRight: '0',
         borderTop: '0',
+        background:'white',
         padding: '10px 15px',
+        position:'sticky',
+        top:'0',
         '& h6': {
             fontWeight: 800,
 
@@ -120,7 +123,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     tweetsCentred: {
         marginTop: 50,
         textAlign: 'center',
-    },
+        marginLeft: '44%'},
 
     tweetsHeaderBackButton: {
         marginRight: 20,

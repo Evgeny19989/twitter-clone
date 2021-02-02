@@ -31,7 +31,7 @@ export const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): Rea
     }
 
     return (
-        <div>
+        <div style={{position:'sticky' , top:'0'}}>
             <ul className={classes.sideMenuList}>
                 <li className={classes.sideMenuListItem}>
                   
