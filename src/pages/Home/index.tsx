@@ -27,6 +27,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { FetchTweets } from '../../store/ducks/tweets/actionCreators';
 import {selectTweetsItems, selectIsTweetsLoading} from "../../store/ducks/tweets/selectors";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {fetchTags} from "../../store/ducks/tags/actionCreators";
 
 
 
@@ -38,6 +39,7 @@ export const Home = (): React.ReactElement => {
 
     React.useEffect(() => {
         dispatch(FetchTweets())
+        dispatch(fetchTags())
     }, [dispatch])
 
     return <Container className={classes.wrapper} maxWidth={'lg'}>
