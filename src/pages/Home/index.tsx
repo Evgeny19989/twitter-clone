@@ -30,8 +30,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {fetchTags} from "../../store/ducks/tags/actionCreators";
 import { Tags } from '../../components/Tags';
 import { Route } from 'react-router-dom';
-
-
+import {BackButton} from "../../components/BackButton";
 
 export const Home = (): React.ReactElement => {
     const classes = useHomeStyles()
@@ -51,10 +50,22 @@ export const Home = (): React.ReactElement => {
             </Grid>
             <Grid item xs={6}>
                 <Paper className={classes.tweetsWrapper} variant={'outlined'}>
-                    <Paper style={{zIndex:444}} className={classNames(classes.tweetsHeader)} variant={'outlined'}>
-                        <Typography variant={'h6'}>
+                    <Paper style={{zIndex:444 ,    display:'flex',
+                        alignItems:'center',}} className={classNames(classes.tweetsHeader)} variant={'outlined'}>
+                   {/*     <Typography variant={'h6'}>
                             Главная
-                        </Typography>
+                        </Typography>*/}
+                        <Route path="/home/:any">
+                         <BackButton/>
+                        </Route>
+                        <Route path="/home/tweet">
+                            <Typography variant="h6">Твитнуть</Typography>
+                        </Route>
+                        <Route path={['/home', '/home/search']} exact>
+                            <Typography variant="h6">Твиты</Typography>
+                        </Route>
+
+
                     </Paper>
                     <Route path={['/home', '/home/search']} exact>
                     <Paper>

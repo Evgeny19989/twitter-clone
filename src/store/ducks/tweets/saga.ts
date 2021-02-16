@@ -1,7 +1,7 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
 import {setTweetLoading, SetTweets, TweetsActionType} from "./actionCreators";
 import {TweetsApi} from "../../../services/api/tweetsApi";
-import {LoadingState} from "./contracts/state";
+import {LoadingStatus} from "./contracts/state";
 
 
 // ...
@@ -15,7 +15,7 @@ export function* fetchTweetsRequest() {
         yield put(SetTweets(data))
     }
     catch(error) {
-yield put(setTweetLoading(LoadingState.ERROR))
+yield put(setTweetLoading(LoadingStatus.ERROR))
     }
 
 

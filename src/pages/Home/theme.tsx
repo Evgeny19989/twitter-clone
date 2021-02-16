@@ -62,6 +62,9 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
 
         }
     },
+    tweetHeaderBack:{
+      marginRight:'20px'
+    },
     tweetWrapper: {
         color: 'inherit',
         textDecoration:'none'

@@ -1,4 +1,4 @@
-export enum LoadingState {
+export enum LoadingStatus {
     LOADED = 'LOADED',
     LOADING = 'LOADING',
     ERROR = 'ERROR',
@@ -17,5 +17,5 @@ export interface Tweet {
 
 export interface TweetsState {
     items: Tweet[];
-    loadingState: LoadingState
+    LoadingStatus: LoadingStatus
 }
