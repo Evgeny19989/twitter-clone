@@ -28,6 +28,8 @@ import { FetchTweets } from '../../store/ducks/tweets/actionCreators';
 import {selectTweetsItems, selectIsTweetsLoading} from "../../store/ducks/tweets/selectors";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {fetchTags} from "../../store/ducks/tags/actionCreators";
+import { Tags } from '../../components/Tags';
+import { Route } from 'react-router-dom';
 
 
 
@@ -54,6 +56,7 @@ export const Home = (): React.ReactElement => {
                             Главная
                         </Typography>
                     </Paper>
+                    <Route path={['/home', '/home/search']} exact>
                     <Paper>
                         <div className={classes.addForm}>
                             <div className={classes.addForm}>
@@ -63,20 +66,22 @@ export const Home = (): React.ReactElement => {
                         </div>
                         <div className={classes.addFormBottomLine}/>
                     </Paper>
-
-                    { isLoading ?
-                        (<CircularProgress className={classes.tweetsCentred} /> )
-                        :
-                        (
-                        tweets.map((el,index) =>{
-                        return <Tweet
-                            _id={el._id}
-                            key={el._id}
-                            text={el.text}
-                            classes={classes} user={el.user}/>
-                    })
-                        )
-                    }
+                    </Route>
+                 <Route exact path={'/home'}>
+                     { isLoading ?
+                         (<CircularProgress className={classes.tweetsCentred} /> )
+                         :
+                         (
+                             tweets.map((el,index) =>{
+                                 return <Tweet
+                                     _id={el._id}
+                                     key={el._id}
+                                     text={el.text}
+                                     classes={classes} user={el.user}/>
+                             })
+                         )
+                     }
+                 </Route>
 
                 </Paper>
             </Grid>
@@ -98,6 +103,8 @@ export const Home = (): React.ReactElement => {
 {/*<FullTweet/>*/}
 
                 <Paper className={classes.rightSideBlock}>
+
+                    <Tags classes={classes}/>
                     <Paper className={classes.rightSideBlockHeader} variant="outlined">
                         <b>Кого читать</b>
                     </Paper>

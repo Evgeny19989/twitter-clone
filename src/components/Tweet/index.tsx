@@ -7,6 +7,7 @@ import ReplyIcon from '@material-ui/icons/Reply';
 import LikeIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import classNames from 'classnames'
 import { useHomeStyles } from '../../pages/Home/theme';
+import { Link } from 'react-router-dom';
 
 
 interface TweetProps {
@@ -21,8 +22,8 @@ interface TweetProps {
     };
 }
 
-export const Tweet : React.FC<TweetProps>  = ({classes, text,user}:TweetProps):React.ReactElement => {
-    return <div>
+export const Tweet : React.FC<TweetProps>  = ({classes, text,user}, _id:TweetProps):React.ReactElement => {
+    return <Link className={classes.tweetWrapper} to={`/home/tweet/${_id}`}>
         <Paper className={classNames( classes.tweet ,  classes.tweetsHeader)} variant={'outlined'}>
 
 <div style={{display:'flex',
@@ -63,5 +64,5 @@ export const Tweet : React.FC<TweetProps>  = ({classes, text,user}:TweetProps):R
 
 
         </Paper>
-    </div>
+    </Link>
 }

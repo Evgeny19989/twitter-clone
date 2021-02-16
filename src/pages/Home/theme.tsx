@@ -1,4 +1,4 @@
-import { colors, makeStyles, Theme } from '@material-ui/core';
+import {colors, makeStyles, Theme} from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 
 export const useHomeStyles = makeStyles((theme: Theme) => ({
@@ -7,21 +7,21 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         listStyle: 'none',
         padding: 0,
         margin: 0,
-        maxWidth:'230px'
+        maxWidth: '230px'
     },
     sideMenuListItem: {
-        '& div' :{
-            display:'inline-flex',
-            alignItems:'center',
-            padding:'0 10px' ,
-            borderRadius:'30px',
-            height:'50px',
-            cursor:'pointer',
-            transition:'background-color 0.15s ease-in-out',
-            '&:hover':{
+        '& div': {
+            display: 'inline-flex',
+            alignItems: 'center',
+            padding: '0 10px',
+            borderRadius: '30px',
+            height: '50px',
+            cursor: 'pointer',
+            transition: 'background-color 0.15s ease-in-out',
+            '&:hover': {
                 backgroundColor: 'rgba(29,161,242,0.1)',
-                '& h6':{
-                    color:theme.palette.primary.main
+                '& h6': {
+                    color: theme.palette.primary.main
                 }
 
             }
@@ -53,18 +53,23 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         borderLeft: '0',
         borderRight: '0',
         borderTop: '0',
-        background:'white',
+        background: 'white',
         padding: '10px 15px',
-        position:'sticky',
-        top:'0',
+        position: 'sticky',
+        top: '0',
         '& h6': {
             fontWeight: 800,
 
         }
     },
+    tweetWrapper: {
+        color: 'inherit',
+        textDecoration:'none'
+    },
     tweet: {
-        paddingTop:'15px',
+        paddingTop: '15px',
         cursor: 'pointer',
+        textDecoration: 'none',
         '&:hover': {
             backgroundColor: 'rgb(245,248,250)'
         }
@@ -79,18 +84,14 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         maxWidth: '450px',
-        position:'relative',
-        left:'-13px'
+        position: 'relative',
+        left: '-13px'
 
     },
-    SideMenuTweetButton:{
-        padding:theme.spacing(3.2 ),
-        marginTop:theme.spacing(2)
+    SideMenuTweetButton: {
+        padding: theme.spacing(3.2),
+        marginTop: theme.spacing(2)
     },
-
-
-
-
 
 
     centered: {
@@ -123,7 +124,8 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     tweetsCentred: {
         marginTop: 50,
         textAlign: 'center',
-        marginLeft: '44%'},
+        marginLeft: '44%'
+    },
 
     tweetsHeaderBackButton: {
         marginRight: 20,
