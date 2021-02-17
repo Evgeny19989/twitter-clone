@@ -8,7 +8,10 @@ import {Tweet, TweetsState} from "../../store/ducks/tweets/contracts/state";
 },
 
      fetchTweetData(id:string):Promise<Tweet>{
-         return axios.get(`/tweets/` + id).then(({data}) => data)
+         return axios.get(`/tweets?_id=` + id).then(({data}) => data)
+     },
+     addTweetData(payload:Tweet):Promise<Tweet>{
+         return axios.post(`/tweets`).then(({data}) => data)
      }
  }
 

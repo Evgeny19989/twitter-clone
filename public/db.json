@@ -44,8 +44,8 @@
       "_id": "oitx2o167i",
       "text": "твит",
       "user": {
-        "fullname": "Test User",
-        "username": "test",
+        "fullname": "ALEX",
+        "username": "ALEX",
         "avatarUrl": "https://source.unsplash.com/random/100x100?5"
       },
       "id": 5
@@ -139,6 +139,16 @@
         "avatarUrl": "https://pbs.twimg.com/profile_images/1290320630521487362/UKVSbU2V_bigger.jpg"
       },
       "id": 15
+    },
+    {
+      "_id": "pddsfsdffdsfsdsdf",
+      "text": "postm,an",
+      "user": {
+        "fullname": "Test  postam",
+        "username": "postman",
+        "avatarUrl": "https://source.unsplash.com/random/100x100?6"
+      },
+      "id": 16
     }
   ],
   "tags": [

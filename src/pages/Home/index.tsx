@@ -31,6 +31,8 @@ import {fetchTags} from "../../store/ducks/tags/actionCreators";
 import { Tags } from '../../components/Tags';
 import { Route } from 'react-router-dom';
 import {BackButton} from "../../components/BackButton";
+import { FullTweet } from './components/FullTweet';
+
 
 export const Home = (): React.ReactElement => {
     const classes = useHomeStyles()
@@ -52,9 +54,6 @@ export const Home = (): React.ReactElement => {
                 <Paper className={classes.tweetsWrapper} variant={'outlined'}>
                     <Paper style={{zIndex:444 ,    display:'flex',
                         alignItems:'center',}} className={classNames(classes.tweetsHeader)} variant={'outlined'}>
-                   {/*     <Typography variant={'h6'}>
-                            Главная
-                        </Typography>*/}
                         <Route path="/home/:any">
                          <BackButton/>
                         </Route>
@@ -93,6 +92,7 @@ export const Home = (): React.ReactElement => {
                          )
                      }
                  </Route>
+                    <Route exact path={'/home/tweet/:id'} component={FullTweet}  />
 
                 </Paper>
             </Grid>

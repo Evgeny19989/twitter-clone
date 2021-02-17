@@ -7,34 +7,58 @@ import CommentIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
 import RepostIcon from '@material-ui/icons/RepeatOutlined';
 import LikeIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import ShareIcon from '@material-ui/icons/ReplyOutlined';
-import { Divider, IconButton } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { Tweet } from '../../../components/Tweet';
-import { useHomeStyles } from '../theme';
-
-
+import {Divider, IconButton} from '@material-ui/core';
+import {useDispatch, useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom';
+import {Tweet} from '../../../components/Tweet';
+import {useHomeStyles} from '../theme';
+import {FetchTweet,SetTweet} from "../../../store/ducks/tweet/actionCreators";
+import {selectTweetData,selectIsTweetLoading} from "../../../store/ducks/tweet/selectors";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export const FullTweet: React.FC = (): React.ReactElement | null => {
     const classes = useHomeStyles();
     const dispatch = useDispatch();
     const params: { id?: string } = useParams();
+    const isLoading = useSelector(selectIsTweetLoading);
     const id = params.id;
+    const tweetData = useSelector(selectTweetData)
+    console.log(isLoading)
+    React.useEffect(() => {
+        if (id) {
+            dispatch(FetchTweet(id))
+        }
+
+        return () => {
+            dispatch(SetTweet(undefined));
+        }
+    }, [dispatch,id])
+    if (!tweetData) {
+        return null
+    }
 
 
 
+    if (isLoading) {
+        return (
+            <div className={classes.tweetsCentred}>
+                <CircularProgress />
+            </div>
+        );
+    }
 
 
+    if(tweetData) {
         return (
             <>
                 <Paper className={classes.fullTweet}>
-                    <div >
+                    <div>
                         <Avatar
                             className={classes.tweetAvatar}
                             alt={`Аватарка пользователя`}
                         />
                         <Typography>
-                                <b>Hello</b>&nbsp;
+                            <b>Hello</b>&nbsp;
                             <div>
                                 <span className={classes.tweetUserName}>@Hello</span>&nbsp;
                             </div>
@@ -56,54 +80,27 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
                     </Typography>
                     <div className={classNames(classes.tweetFooter, classes.fullTweetFooter)}>
                         <IconButton>
-                            <CommentIcon style={{ fontSize: 25 }} />
+                            <CommentIcon style={{fontSize: 25}}/>
                         </IconButton>
                         <IconButton>
-                            <RepostIcon style={{ fontSize: 25 }} />
+                            <RepostIcon style={{fontSize: 25}}/>
                         </IconButton>
                         <IconButton>
-                            <LikeIcon style={{ fontSize: 25 }} />
+                            <LikeIcon style={{fontSize: 25}}/>
                         </IconButton>
                         <IconButton>
-                            <ShareIcon style={{ fontSize: 25 }} />
+                            <ShareIcon style={{fontSize: 25}}/>
                         </IconButton>
                     </div>
                 </Paper>
-                <Divider />
-                <Tweet
-                    _id="1"
-                    text="Any more to move? You might need to adjust your stretching routines!"
-                    user={{
-                        fullname: 'Arlene Andrews',
-                        username: 'ArleneAndrews_1',
-                        avatarUrl:'eee'
-                    }}
-                    classes={classes}
-                />
-                <Tweet
-                    _id="1"
-                    text="Any more to move? You might need to adjust your stretching routines!"
+                <Divider/>
+                <Tweet {...tweetData}
 
-                    user={{
-                        fullname: 'Arlene Andrews',
-                        username: 'ArleneAndrews_1',
-                        avatarUrl:'eee'
-                    }}
-                    classes={classes}
-                />
-                <Tweet
-                    _id="1"
-                    text="Any more to move? You might need to adjust your stretching routines!"
-                    user={{
-                        fullname: 'Arlene Andrews',
-                        username: 'ArleneAndrews_1',
-                        avatarUrl:'eee'
-                    }}
-                    classes={classes}
+                       classes={classes}
                 />
             </>
         );
 
-
-
+    }
+    return null
 };

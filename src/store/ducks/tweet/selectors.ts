@@ -1,16 +1,16 @@
 import {LoadingStatus, TweetState} from "./contracts/state";
 import {RootState} from "../../store";
-import {createSelector} from "reselect";
+import { Tweet } from "../tweets/contracts/state";
 
 
 export  const  selectTweet= (state:RootState): TweetState =>  state.tweet
 
-export  const selectTweetData = (state:RootState):TweetState['data'] => selectTweet(state).data
+export  const selectTweetData = (state:RootState):Tweet | undefined => selectTweet(state).data
 
-export  const selectLoadingState = (state:RootState) : LoadingStatus => selectTweet(state).LoadingStatus
+export  const selectLoadingStatus = (state:RootState) : LoadingStatus => selectTweet(state).LoadingStatus
 
 export const  selectIsTweetLoaded = (state:RootState) : boolean =>
-    selectLoadingState(state) === LoadingStatus.LOADED
+    selectLoadingStatus(state) === LoadingStatus.LOADED
 
 export const  selectIsTweetLoading = (state:RootState) : boolean =>
-    selectLoadingState(state) === LoadingStatus.LOADING
+    selectLoadingStatus(state) === LoadingStatus.LOADING
