@@ -9,7 +9,7 @@ import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import {useHomeStyles} from '../pages/Home/theme';
 import {useDispatch} from "react-redux";
-import {FetchAddTweet} from "../store/ducks/tweet/actionCreators";
+import { fetchAddTweet } from '../store/ducks/tweets/actionCreators';
 
 interface AddTweetFormProps {
     classes: ReturnType<typeof useHomeStyles>;
@@ -33,7 +33,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
     };
 
     const handleClickAddTweet = (): void => {
-        dispatch(FetchAddTweet(text))
+        dispatch(fetchAddTweet(text))
         setText('');
 
     };

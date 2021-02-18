@@ -12,7 +12,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {Tweet} from '../../../components/Tweet';
 import {useHomeStyles} from '../theme';
-import {FetchTweet,SetTweet} from "../../../store/ducks/tweet/actionCreators";
+import {FetchAddTweet, SetTweet} from "../../../store/ducks/tweet/actionCreators";
 import {selectTweetData,selectIsTweetLoading} from "../../../store/ducks/tweet/selectors";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -26,7 +26,7 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
     console.log(isLoading)
     React.useEffect(() => {
         if (id) {
-            dispatch(FetchTweet(id))
+            dispatch(FetchAddTweet(id))
         }
 
         return () => {

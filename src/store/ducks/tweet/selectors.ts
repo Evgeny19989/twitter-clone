@@ -1,6 +1,6 @@
-import {LoadingStatus, TweetState} from "./contracts/state";
+import { TweetState} from "./contracts/state";
 import {RootState} from "../../store";
-import { Tweet } from "../tweets/contracts/state";
+import {LoadingStatus, Tweet } from "../tweets/contracts/state";
 
 
 export  const  selectTweet= (state:RootState): TweetState =>  state.tweet
