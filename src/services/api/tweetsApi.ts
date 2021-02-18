@@ -11,7 +11,7 @@ import {Tweet, TweetsState} from "../../store/ducks/tweets/contracts/state";
          return axios.get(`/tweets?_id=` + id).then(({data}) => data)
      },
      addTweetData(payload:Tweet):Promise<Tweet>{
-         return axios.post(`/tweets`).then(({data}) => data)
+         return axios.post(`/tweets`,payload).then(({data}) => data)
      }
  }
 

@@ -7,7 +7,8 @@ export enum TweetActionType {
  SET_DATA = 'tweet/SET_DATA',
  FETCH_DATA = 'tweet/FETCH_DATA',
  SET_LOADING_STATE = 'tweet/SET_LOADING_STATE',
- ADD_DATA = 'tweet/ADD_DATA',
+ FETCH_ADD_DATA = 'tweet/FETCH_ADD_DATA',
+ADD_DATA = 'tweet/ADD_DATA',
 
 
 }
@@ -24,14 +25,25 @@ export const SetTweet = (payload:TweetState['data']):SetTweetDataActionInterface
 
 
 
-export interface AddTweetDataActionInterface extends Action<TweetActionType>{
-    type:TweetActionType.ADD_DATA;
+export interface FetchAddTweetDataActionInterface extends Action<TweetActionType>{
+    type:TweetActionType.FETCH_ADD_DATA;
     payload:string
 }
-export const AddTweet = (payload:string):AddTweetDataActionInterface =>({
+export const FetchAddTweet = (payload:string):FetchAddTweetDataActionInterface =>({
+    type: TweetActionType.FETCH_ADD_DATA,
+    payload
+})
+
+export interface AddTweetDataActionInterface extends Action<TweetActionType>{
+    type:TweetActionType.ADD_DATA;
+    payload:Tweet
+}
+export const AddTweet = (payload:Tweet):AddTweetDataActionInterface =>({
     type: TweetActionType.ADD_DATA,
     payload
 })
+
+
 
 
 
@@ -61,4 +73,4 @@ export const FetchTweet = (payload:string):FetchTweetDataActionInterface =>({
 
 })
 
-export type TweetActions = FetchTweetDataActionInterface | SetTweetLoadingInterface | SetTweetDataActionInterface |AddTweetDataActionInterface
+export type TweetActions = FetchTweetDataActionInterface | SetTweetLoadingInterface | SetTweetDataActionInterface |FetchAddTweetDataActionInterface | AddTweetDataActionInterface

@@ -1,7 +1,7 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
 import {
     AddTweet,
-    AddTweetDataActionInterface,
+    FetchAddTweetDataActionInterface,
     FetchTweetDataActionInterface,
     SetTweet,
     setTweetLoading,
@@ -9,6 +9,7 @@ import {
 } from "./actionCreators";
 import {TweetsApi} from "../../../services/api/tweetsApi";
 import {LoadingStatus} from "./contracts/state";
+import { Tweet } from '../tweets/contracts/state';
 
 
 export function* fetchTweetRequest({payload: tweetId}: FetchTweetDataActionInterface) {
@@ -24,11 +25,11 @@ export function* fetchTweetRequest({payload: tweetId}: FetchTweetDataActionInter
 
 }
 
-export function* AddTweetRequest({payload}: AddTweetDataActionInterface) {
+export function* fetchAddTweetRequest({payload}: FetchAddTweetDataActionInterface) {
 
 
     try {
-        const data = {
+        const data:Tweet = {
           _id:Math.random().toString(36).substr(2),
             text:payload,
             user: {
@@ -40,6 +41,7 @@ export function* AddTweetRequest({payload}: AddTweetDataActionInterface) {
 
         }
         const item = yield call(TweetsApi.addTweetData, data)
+        console.log(item)
         yield put(AddTweet(item))
     } catch
         (error)
@@ -53,5 +55,5 @@ export function* AddTweetRequest({payload}: AddTweetDataActionInterface) {
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
     export function* tweetSaga() {
         yield takeEvery(TweetActionType.FETCH_DATA, fetchTweetRequest)
-        yield takeEvery(TweetActionType.ADD_DATA, AddTweetRequest)
+        yield takeEvery(TweetActionType.FETCH_ADD_DATA, fetchAddTweetRequest)
     }

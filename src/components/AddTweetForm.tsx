@@ -7,7 +7,9 @@ import IconButton from '@material-ui/core/IconButton';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
-import { useHomeStyles } from '../pages/Home/theme';
+import {useHomeStyles} from '../pages/Home/theme';
+import {useDispatch} from "react-redux";
+import {FetchAddTweet} from "../store/ducks/tweet/actionCreators";
 
 interface AddTweetFormProps {
     classes: ReturnType<typeof useHomeStyles>;
@@ -23,15 +25,17 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
     const [text, setText] = React.useState<string>('');
     const textLimitPercent = Math.round((text.length / 280) * 100);
     const textCount = MAX_LENGTH - text.length;
-
+    const dispatch = useDispatch()
     const handleChangeTextare = (e: React.FormEvent<HTMLTextAreaElement>): void => {
-        if (e.currentTarget ) {
+        if (e.currentTarget) {
             setText(e.currentTarget.value);
         }
     };
 
     const handleClickAddTweet = (): void => {
+        dispatch(FetchAddTweet(text))
         setText('');
+
     };
 
     return (
@@ -53,10 +57,10 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
             <div className={classes.addFormBottom}>
                 <div className={classNames(classes.tweetFooter, classes.addFormBottomActions)}>
                     <IconButton color="primary">
-                        <ImageOutlinedIcon style={{ fontSize: 26 }} />
+                        <ImageOutlinedIcon style={{fontSize: 26}}/>
                     </IconButton>
                     <IconButton color="primary">
-                        <EmojiIcon style={{ fontSize: 26 }} />
+                        <EmojiIcon style={{fontSize: 26}}/>
                     </IconButton>
                 </div>
                 <div className={classes.addFormBottomRight}>
@@ -69,10 +73,10 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
                                     size={20}
                                     thickness={5}
                                     value={text.length >= MAX_LENGTH ? 100 : textLimitPercent}
-                                    style={text.length >= MAX_LENGTH ? { color: 'red' } : undefined}
+                                    style={text.length >= MAX_LENGTH ? {color: 'red'} : undefined}
                                 />
                                 <CircularProgress
-                                    style={{ color: 'rgba(0, 0, 0, 0.1)' }}
+                                    style={{color: 'rgba(0, 0, 0, 0.1)'}}
                                     variant="static"
                                     size={20}
                                     thickness={5}
