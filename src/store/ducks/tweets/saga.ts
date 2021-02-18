@@ -1,9 +1,9 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
-import {AddTweet, setTweetLoading, SetTweets} from "./actionCreators";
+import {AddTweet, SetAddFormState, setTweetLoading, SetTweets} from "./actionCreators";
 import {TweetsApi} from "../../../services/api/tweetsApi";
-import {LoadingStatus, Tweet} from "./contracts/state";
+import {AddFormState, LoadingStatus, Tweet} from "./contracts/state";
 import {FetchAddTweetActionInterface, TweetsActionType} from './contracts/ActionTypes';
-
+import {AddTweetForm} from "../../../components/AddTweetForm";
 
 
 // ...
@@ -15,23 +15,21 @@ export function* fetchTweetsRequest() {
 
         const data = yield call(TweetsApi.fetchTweets)
         yield put(SetTweets(data))
-    }
-    catch(error) {
-yield put(setTweetLoading(LoadingStatus.ERROR))
+    } catch (error) {
+        yield put(setTweetLoading(LoadingStatus.ERROR))
     }
 
 
 }
 
 
-
 export function* fetchAddTweetRequest({payload}: FetchAddTweetActionInterface) {
 
 
     try {
-        const data:Tweet = {
-            _id:Math.random().toString(36).substr(2),
-            text:payload,
+        const data: Tweet = {
+            _id: Math.random().toString(36).substr(2),
+            text: payload,
             user: {
                 fullname: 'Test',
                 username: 'Test',
@@ -43,9 +41,8 @@ export function* fetchAddTweetRequest({payload}: FetchAddTweetActionInterface) {
         const item = yield call(TweetsApi.addTweetData, data)
         yield put(AddTweet(item))
     } catch
-        (error)
-    {
-        yield put(setTweetLoading(LoadingStatus.ERROR))
+        (error) {
+        yield put(SetAddFormState(AddFormState.ERROR))
     }
 
 
