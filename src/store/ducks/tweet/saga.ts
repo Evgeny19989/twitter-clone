@@ -29,6 +29,5 @@ export function* fetchTweetRequest({payload: tweetId}: FetchAddTweetDataActionIn
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
     export function* tweetSaga() {
         yield takeEvery(TweetActionsType.FETCH_ADD_DATA, fetchTweetRequest)
-
     }
 
