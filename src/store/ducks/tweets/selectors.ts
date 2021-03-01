@@ -3,18 +3,18 @@ import {RootState} from "../../store";
 import {createSelector} from "reselect";
 
 
-export  const  selectTweets= (state:RootState): TweetsState =>  state.tweets
+export  const  selectTweetsState= (state:RootState): TweetsState =>  state.tweets
 
-export  const selectTweetsItems = createSelector(selectTweets , (tweets) => tweets.items)
+export  const selectTweetsItems =  (state:RootState) => selectTweetsState(state).items
 
-export  const selectLoadingState = (state:RootState) : LoadingStatus => selectTweets(state).LoadingStatus
+export  const selectLoadingState = (state:RootState) : LoadingStatus => selectTweetsState(state).LoadingStatus
 
 export const  selectIsTweetsLoaded = (state:RootState) : boolean =>
     selectLoadingState(state) === LoadingStatus.LOADED
 
 
 export const  selectAddFormState = (state:RootState) : AddFormState =>
-    selectTweets(state).addFormState
+    selectTweetsState(state).addFormState
 
 
 export const  selectIsTweetsLoading = (state:RootState) : boolean =>

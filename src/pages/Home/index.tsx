@@ -39,7 +39,6 @@ export const Home = (): React.ReactElement => {
     const dispatch = useDispatch()
     const tweets = useSelector(selectTweetsItems)
     const isLoading = useSelector(selectIsTweetsLoading)
-
     React.useEffect(() => {
         dispatch(FetchTweets())
         dispatch(fetchTags())
@@ -84,10 +83,11 @@ export const Home = (): React.ReactElement => {
                          (
                              tweets.map((el,index) =>{
                                  return <Tweet
-                                     _id={el._id}
+
+                                     {...el}
                                      key={el._id}
-                                     text={el.text}
-                                     classes={classes} user={el.user}/>
+
+                                     classes={classes}/>
                              })
                          )
                      }

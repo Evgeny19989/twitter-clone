@@ -16,7 +16,7 @@ export function* fetchTweetRequest({payload: tweetId}: FetchAddTweetDataActionIn
     try {
 
         const data = yield call(TweetsApi.fetchTweetData, tweetId)
-        yield put(SetTweet(data[0]))
+        yield put(SetTweet(data))
     } catch (error) {
         yield put(setTweetLoading(LoadingStatus.ERROR))
     }

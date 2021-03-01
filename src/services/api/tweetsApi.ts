@@ -1,17 +1,25 @@
-import axios from 'axios'
+import {axios} from '../../core/axios'
 import {Tweet, TweetsState} from "../../store/ducks/tweets/contracts/state";
 
 
+interface Response<T>{
+    status:string,
+    data:T
+}
+
  export const TweetsApi ={
-      fetchTweets():Promise<TweetsState['items']>{
-    return axios.get('/tweets').then(({data}) => data)
+    async  fetchTweets():Promise<Tweet[]>{
+        const { data} =  await axios.get<Response<Tweet[]>>('/tweets')
+        return data.data
 },
 
-     fetchTweetData(id:string):Promise<Tweet>{
-         return axios.get(`/tweets?_id=` + id).then(({data}) => data)
+     async fetchTweetData(id:string):Promise<Tweet>{
+         const { data} =  await axios.get<Response<Tweet>>(`/tweets/` + id)
+         return data.data
      },
-     addTweetData(payload:Tweet):Promise<Tweet>{
-         return axios.post(`/tweets`,payload).then(({data}) => data)
+     async addTweetData(payload:string):Promise<Tweet>{
+         const { data} = await axios.post<Response<Tweet>>(`/tweets`, {text:payload})
+         return data.data
      }
  }
 

@@ -9,7 +9,7 @@ import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import {useHomeStyles} from '../pages/Home/theme';
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAddTweet} from '../store/ducks/tweets/actionCreators';
+import {fetchAddTweet, FetchTweets} from '../store/ducks/tweets/actionCreators';
 import {selectAddFormState} from "../store/ducks/tweets/selectors";
 import Alert from '@material-ui/lab/Alert';
 import {AddFormState} from "../store/ducks/tweets/contracts/state";
@@ -38,11 +38,8 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
     };
 
 
-    React.useEffect(() => {
-
-    }, [addFormState])
-
     const handleClickAddTweet = (): void => {
+
         dispatch(fetchAddTweet(text))
         setText('');
 
