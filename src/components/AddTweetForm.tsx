@@ -66,9 +66,9 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
             <div className={classes.addFormBottom}>
                 <div className={classNames(classes.tweetFooter, classes.addFormBottomActions)}>
                     <UploadImages/>
-                    <IconButton color="primary">
+               {/*     <IconButton color="primary">
                         <EmojiIcon style={{fontSize: 26}}/>
-                    </IconButton>
+                    </IconButton>*/}
                 </div>
                 <div className={classes.addFormBottomRight}>
                     {text && (

@@ -227,7 +227,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
 
     addFormBottomActions: {
         marginTop: 10,
-        paddingLeft: 70,
+
     },
     addFormTextarea: {
         width: '100%',
