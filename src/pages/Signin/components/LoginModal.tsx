@@ -5,12 +5,15 @@ import FormGroup from "@material-ui/core/FormGroup";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {useStyles} from "../../SignIn";
-import {useForm, Controller} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import {AuthApi} from "../../../services/api/authApi";
 import {Notification} from "../../../components/Notification";
 import {Color} from '@material-ui/lab/Alert';
+import {useDispatch, useSelector} from "react-redux";
+import {fetchUserSighin} from "../../../store/ducks/user/actionCreators";
+import {selectUserStatus} from "../../../store/ducks/user/selectors";
+import {LoadingStatus} from "../../../store/ducks/tweets/contracts/state";
 
 interface LoginModalProps {
     open: boolean,
@@ -31,31 +34,36 @@ const LoginFormSchema = yup.object().shape({
 });
 
 export const LoginModal: React.FC<LoginModalProps> = ({open, onClose}): React.ReactElement => {
+
+    const dispatch = useDispatch()
     const {control, handleSubmit, errors} = useForm<LoginFormProps>({
         resolver: yupResolver(LoginFormSchema)
 
     });
+    const loadingStatus = useSelector(selectUserStatus)
 
-
-    console.log(errors)
-    const onSubmit = async (openNotification: (text: string, type: Color) => void, data: LoginFormProps) => {
-        try {
-            const userData = await AuthApi.signIn(data)
-            console.log(userData)
-            openNotification('Успешо', 'error')
-        } catch (error) {
-            openNotification('Неверный логин и пароль', 'success')
+    const onSubmit = async (data: LoginFormProps) => {
+            dispatch(fetchUserSighin(data))
         }
-    };
+    React.useEffect(() => {
+        if (loadingStatus === LoadingStatus.SUCCESS) {
+
+            onClose();
+        } else if (loadingStatus === LoadingStatus.ERROR) {
+
+        }
+
+    }, [loadingStatus, onClose]);
+    console.log(loadingStatus)
+
+
     const classes = useStyles()
-    return (<Notification>
-            {
-                openNotification => (
+    return (
                     <ModalBlock
                         visible={open}
                         onClose={onClose}
                         title="Войти в аккаунт">
-                        <form onSubmit={handleSubmit(onSubmit.bind(null, openNotification))}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <FormControl className={classes.loginFormControl} component="fieldset" fullWidth>
                                 <FormGroup aria-label="position" row>
                                     <Controller
@@ -94,15 +102,15 @@ export const LoginModal: React.FC<LoginModalProps> = ({open, onClose}): React.Re
                                         defaultValue=''
 
                                     />
-                                    <Button type='submit' variant="contained" color="primary" fullWidth>
+                                    <Button   disabled={loadingStatus === LoadingStatus.LOADING} type='submit' variant="contained" color="primary" fullWidth>
                                         Войти
                                     </Button>
                                 </FormGroup>
                             </FormControl>
                         </form>
                     </ModalBlock>
-                )
-            }
-        </Notification>
+
+
     )
+
 }

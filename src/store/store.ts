@@ -5,6 +5,8 @@ import rootSaga from "./sagas";
 import {TweetsState} from "./ducks/tweets/contracts/state";
 import { TagsState } from './ducks/tags/contracts/state';
 import {TweetState} from "./ducks/tweet/contracts/state";
+import {userState} from "./ducks/user/contracts/state";
+import {UsersState} from "./ducks/users/contracts/state";
 
 
  declare global{
@@ -18,7 +20,9 @@ const sagaMiddleWare = createSagaMiddleware()
 export interface  RootState {
     tweets:TweetsState,
     tags:TagsState,
-    tweet:TweetState
+    tweet:TweetState,
+    user:userState,
+    users:UsersState
 }
 
 

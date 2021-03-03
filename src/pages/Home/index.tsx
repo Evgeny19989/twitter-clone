@@ -24,14 +24,15 @@ import {AddTweetForm} from '../../components/AddTweetForm';
 import {useHomeStyles} from './theme';
 import {SearchTextField} from '../../components/SearchTextField';
 import {useDispatch, useSelector} from "react-redux";
-import { FetchTweets } from '../../store/ducks/tweets/actionCreators';
+import {FetchTweets} from '../../store/ducks/tweets/actionCreators';
 import {selectTweetsItems, selectIsTweetsLoading} from "../../store/ducks/tweets/selectors";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {fetchTags} from "../../store/ducks/tags/actionCreators";
-import { Tags } from '../../components/Tags';
-import { Route } from 'react-router-dom';
+import {Tags} from '../../components/Tags';
+import {Route} from 'react-router-dom';
 import {BackButton} from "../../components/BackButton";
-import { FullTweet } from './components/FullTweet';
+import {FullTweet} from './components/FullTweet';
+import { Users } from '../../components/Users';
 
 
 export const Home = (): React.ReactElement => {
@@ -51,10 +52,12 @@ export const Home = (): React.ReactElement => {
             </Grid>
             <Grid item xs={6}>
                 <Paper className={classes.tweetsWrapper} variant={'outlined'}>
-                    <Paper style={{zIndex:444 ,    display:'flex',
-                        alignItems:'center',}} className={classNames(classes.tweetsHeader)} variant={'outlined'}>
+                    <Paper style={{
+                        zIndex: 444, display: 'flex',
+                        alignItems: 'center',
+                    }} className={classNames(classes.tweetsHeader)} variant={'outlined'}>
                         <Route path="/home/:any">
-                         <BackButton/>
+                            <BackButton/>
                         </Route>
                         <Route path="/home/tweet">
                             <Typography variant="h6">Твитнуть</Typography>
@@ -66,82 +69,54 @@ export const Home = (): React.ReactElement => {
 
                     </Paper>
                     <Route path={['/home', '/home/search']} exact>
-                    <Paper>
-                        <div className={classes.addForm}>
+                        <Paper>
                             <div className={classes.addForm}>
-                                <AddTweetForm classes={classes}/>
+                                <div className={classes.addForm}>
+                                    <AddTweetForm classes={classes}/>
+                                </div>
+
                             </div>
-
-                        </div>
-                        <div className={classes.addFormBottomLine}/>
-                    </Paper>
+                            <div className={classes.addFormBottomLine}/>
+                        </Paper>
                     </Route>
-                 <Route exact path={'/home'}>
-                     { isLoading ?
-                         (<CircularProgress className={classes.tweetsCentred} /> )
-                         :
-                         (
-                             tweets.map((el,index) =>{
-                                 return <Tweet
+                    <Route exact path={'/home'}>
+                        {isLoading ?
+                            (<CircularProgress className={classes.tweetsCentred}/>)
+                            :
+                            (
+                                tweets.map((el, index) => {
+                                    return <Tweet
 
-                                     {...el}
-                                     key={el._id}
+                                        {...el}
+                                        key={el._id}
 
-                                     classes={classes}/>
-                             })
-                         )
-                     }
-                 </Route>
-                    <Route exact path={'/home/tweet/:id'} component={FullTweet}  />
+                                        classes={classes}/>
+                                })
+                            )
+                        }
+                    </Route>
+                    <Route exact path={'/home/tweet/:id'} component={FullTweet}/>
 
                 </Paper>
             </Grid>
             <Grid item xs={3}>
 
-                <SearchTextField  style={{position:'sticky' , top:'0'}}
-                    variant="outlined"
-                    placeholder="Поиск по Твиттеру"
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <SearchIcon/>
-                            </InputAdornment>
-                        ),
-                    }}
-                    fullWidth
+                <SearchTextField style={{position: 'sticky', top: '0'}}
+                                 variant="outlined"
+                                 placeholder="Поиск по Твиттеру"
+                                 InputProps={{
+                                     startAdornment: (
+                                         <InputAdornment position="start">
+                                             <SearchIcon/>
+                                         </InputAdornment>
+                                     ),
+                                 }}
+                                 fullWidth
                 />
 
-{/*<FullTweet/>*/}
+                {/*<FullTweet/>*/}
+                <Users/>
 
-                <Paper className={classes.rightSideBlock}>
-
-                    <Tags classes={classes}/>
-                    <Paper className={classes.rightSideBlockHeader} variant="outlined">
-                        <b>Кого читать</b>
-                    </Paper>
-                    <List>
-                        <ListItem className={classes.rightSideBlockItem}>
-                            <ListItemAvatar>
-                                <Avatar
-                                    alt="Remy Sharp"
-                                    src="https://pbs.twimg.com/profile_images/1267938486566428673/US6KRPbA_normal.jpg"
-                                />
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary="Dock Of Shame"
-                                secondary={
-                                    <Typography component="span" variant="body2" color="textSecondary">
-                                        @FavDockOfShame
-                                    </Typography>
-                                }
-                            />
-                            <Button color="primary">
-                                <PersonAddIcon />
-                            </Button>
-                        </ListItem>
-                        <Divider component="li" />
-                    </List>
-                </Paper>
 
             </Grid>
         </Grid>

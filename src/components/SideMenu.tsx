@@ -1,18 +1,21 @@
-import React, {ReactElement, useState} from 'react'
+import React from 'react'
 import TwitterIcon from "@material-ui/icons/Twitter";
 import SearchIcon from "@material-ui/icons/Search";
-import {Hidden, Typography} from "@material-ui/core";
+import {Button, Hidden, Typography} from "@material-ui/core";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import EmailIcon from "@material-ui/icons/Email";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import PersonIcon from "@material-ui/icons/Person";
-import {Button} from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
-import { useHomeStyles } from '../pages/Home/theme';
+import {useHomeStyles} from '../pages/Home/theme';
 import {ModalBlock} from "./ModalBlock";
 import {AddTweetForm} from "./AddTweetForm";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import {useDispatch} from "react-redux";
+import {setUserLoadingStatus} from '../store/ducks/user/actionCreators';
+import {LoadingStatus} from "../store/ducks/tweets/contracts/state";
 
 interface SideMenuProps {
     classes: ReturnType<typeof useHomeStyles>;
@@ -22,26 +25,31 @@ interface SideMenuProps {
 export const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): React.ReactElement => {
 
     const [visibleAddTweetModal, setVisibleAddTweetModal] = React.useState<boolean>(false)
-
-    const onCloseAddTweetModal = () =>{
+    const dispatch = useDispatch()
+    const onCloseAddTweetModal = () => {
         setVisibleAddTweetModal(false)
     }
 
-    const onOpenAddTweetModal = () =>{
+    const onOpenAddTweetModal = () => {
         setVisibleAddTweetModal(true)
     }
 
+    const exitProfile = () => {
+        window.localStorage.clear()
+        window.location.reload();
+    }
+
     return (
-        <div style={{position:'sticky' , top:'0'}}>
+        <div style={{position: 'sticky', top: '0'}}>
             <ul className={classes.sideMenuList}>
                 <li className={classes.sideMenuListItem}>
-                  <Link to={'/home'}>
-                    <div>
+                    <Link to={'/home'}>
+                        <div>
 
-                        <TwitterIcon style={{marginRight: '10px'}} className={classes.logo} color='primary'/>
+                            <TwitterIcon style={{marginRight: '10px'}} className={classes.logo} color='primary'/>
 
-                    </div>
-                  </Link>
+                        </div>
+                    </Link>
                 </li>
                 <li className={classes.sideMenuListItem}>
                     <div>
@@ -103,8 +111,19 @@ export const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): Rea
 
                     </div>
                 </li>
+                <li onClick={exitProfile} className={classes.sideMenuListItem}>
+                    <div>
+
+                        <ExitToAppIcon style={{marginRight: '10px'}} color='primary'/>
+                        <Hidden smDown>
+                            <Typography variant='h6'>Выйти</Typography>
+                        </Hidden>
+
+                    </div>
+                </li>
                 <li className={classes.sideMenuListItem}>
-                    <Button onClick={onOpenAddTweetModal} className={classes.SideMenuTweetButton} variant='contained' color='primary'
+                    <Button onClick={onOpenAddTweetModal} className={classes.SideMenuTweetButton} variant='contained'
+                            color='primary'
                             fullWidth={true}>
                         <Hidden smDown>
                             Твитнуть
@@ -114,8 +133,8 @@ export const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): Rea
                             <CreateIcon/>
                         </Hidden>
                     </Button>
-                    <ModalBlock visible={visibleAddTweetModal}  onClose={onCloseAddTweetModal}>
-                        <div style={{width:'450px'}}>
+                    <ModalBlock visible={visibleAddTweetModal} onClose={onCloseAddTweetModal}>
+                        <div style={{width: '450px'}}>
                             <AddTweetForm maxRows={15} classes={classes}/>
                         </div>
 

@@ -135,6 +135,7 @@ export const SignIn: React.FC = (): ReactElement => {
                     <Button onClick={handleClickOpenSignIn} variant='outlined' color='primary' fullWidth>Войти </Button>
                 </div>
             </div>
+
             <LoginModal open={visibleModal === 'signIn'} onClose={handleCloseModal}/>
             <RegisterModal open={visibleModal === 'signUp'} onClose={handleCloseModal}/>
         </div>
