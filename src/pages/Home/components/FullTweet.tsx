@@ -66,6 +66,9 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
                     </div>
                     <Typography className={classes.fullTweetText} gutterBottom>
                         {tweetData.text}
+                        {tweetData.images && tweetData.images.map(el =>{
+                            return <img style={{width:'100%'}} src={el} key={el} alt=""/>
+                        })}
                         <div className="tweet-images">
                             <Typography>
                                <span className={classes.tweetUserName}>

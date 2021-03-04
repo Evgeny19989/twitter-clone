@@ -1,8 +1,8 @@
 import {call, put, takeEvery} from 'redux-saga/effects'
-import {AddTweet, SetAddFormState, setTweetLoading, SetTweets} from "./actionCreators";
+import {AddTweet, RemoveTweet, SetAddFormState, setTweetLoading, SetTweets} from "./actionCreators";
 import {TweetsApi} from "../../../services/api/tweetsApi";
 import {AddFormState, LoadingStatus, Tweet} from "./contracts/state";
-import {FetchAddTweetActionInterface, TweetsActionType} from './contracts/ActionTypes';
+import {FetchAddTweetActionInterface, RemoveTweetActionInterface, TweetsActionType} from './contracts/ActionTypes';
 
 
 
@@ -38,8 +38,24 @@ export function* fetchAddTweetRequest({payload}: FetchAddTweetActionInterface) {
 
 }
 
+export function* removeTweetRequest({payload}: RemoveTweetActionInterface) {
+
+
+    try {
+
+         yield call(TweetsApi.removeTweet, payload)
+
+    } catch
+        (error) {
+       alert('Ошибка при удаление твита')
+    }
+
+
+}
+
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
 export function* tweetsSaga() {
     yield takeEvery(TweetsActionType.FETCH_TWEETS, fetchTweetsRequest)
     yield takeEvery(TweetsActionType.FETCH_ADD_TWEET, fetchAddTweetRequest)
+    yield takeEvery(TweetsActionType.REMOVE_TWEET, removeTweetRequest)
 }

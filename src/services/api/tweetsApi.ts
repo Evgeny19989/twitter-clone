@@ -22,6 +22,13 @@ interface Response<T>{
      }):Promise<Tweet>{
          const { data} = await axios.post<Response<Tweet>>(`/tweets`, payload)
          return data.data
-     }
+     },
+
+    removeTweet:(id:string):Promise<void> => axios.delete(`/tweets/`+ id)
+
+
+
  }
+
+
 

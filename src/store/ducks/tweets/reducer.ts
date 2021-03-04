@@ -41,6 +41,9 @@ export const TweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsA
         case TweetsActionType.SET_ADD_FORM_STATE:
             draft.addFormState = action.payload
             break
+        case TweetsActionType.REMOVE_TWEET:
+            draft.items = draft.items.filter(el => el._id !== action.payload)
+            break
         default:
             break
     }

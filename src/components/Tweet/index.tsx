@@ -10,6 +10,9 @@ import {useHomeStyles} from '../../pages/Home/theme';
 import {Link, useHistory} from 'react-router-dom';
 import {formatDate} from "../../utils/formatDate";
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import {dispatch} from "jest-circus/build/state";
+import {RemoveTweet} from "../../store/ducks/tweets/actionCreators";
+import {useDispatch} from "react-redux";
 
 
 interface TweetProps {
@@ -23,14 +26,22 @@ interface TweetProps {
         avatarUrl: string;
 
     };
+    images: string[]
 }
 
-export const Tweet: React.FC<TweetProps> = ({classes, text, user, _id, createdAt}: TweetProps): React.ReactElement => {
+export const Tweet: React.FC<TweetProps> = ({
+                                                classes,
+                                                text,
+                                                user,
+                                                _id,
+                                                createdAt,
+                                                images
+                                            }: TweetProps): React.ReactElement => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const history = useHistory();
-
-
+    const dispatch = useDispatch()
+    console.log(images)
     const handleClickTweet = (event: React.MouseEvent<HTMLAnchorElement>): void => {
         event.preventDefault();
         history.push(`/home/tweet/${_id}`);
@@ -50,9 +61,9 @@ export const Tweet: React.FC<TweetProps> = ({classes, text, user, _id, createdAt
 
     const handleRemove = (event: React.MouseEvent<HTMLElement>): void => {
         handleClose(event);
-        /*  if (window.confirm('Вы действительно хотите удалить твит?')) {
-              dispatch(removeTweet(_id));
-          }*/
+          if (window.confirm('Вы действительно хотите удалить твит?')) {
+              dispatch(RemoveTweet(_id));
+          }
     };
 
 
@@ -97,6 +108,9 @@ export const Tweet: React.FC<TweetProps> = ({classes, text, user, _id, createdAt
             <Typography variant={'body1'} gutterBottom>
                 {text}
             </Typography>
+            {images && images.map(el => {
+                return <img style={{width: '100%'}} key={el} src={el} alt=""/>
+            })}
             <div className={classes.tweetFooter}>
                 <IconButton color='primary'>
                     <CommentIcon style={{fontSize: '20px'}}/>

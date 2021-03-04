@@ -55,7 +55,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
         borderTop: '0',
         background: 'white',
         padding: '10px 15px',
-        position: 'sticky',
+
         top: '0',
         '& h6': {
             fontWeight: 800,

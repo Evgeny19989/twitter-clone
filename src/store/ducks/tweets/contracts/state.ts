@@ -23,6 +23,7 @@ export interface Tweet {
         username: string;
         avatarUrl: string;
     }
+    images:string[]
 }
 
 export interface TweetsState {
