@@ -3,21 +3,24 @@ import classNames from 'classnames';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import IconButton from '@material-ui/core/IconButton';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
-import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import {useHomeStyles} from '../pages/Home/theme';
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAddTweet, FetchTweets} from '../store/ducks/tweets/actionCreators';
+import {fetchAddTweet, SetAddFormState} from '../store/ducks/tweets/actionCreators';
 import {selectAddFormState} from "../store/ducks/tweets/selectors";
 import Alert from '@material-ui/lab/Alert';
 import {AddFormState} from "../store/ducks/tweets/contracts/state";
-import { UploadImages } from './UploadImages';
+import {UploadImages} from './UploadImages';
+import {uploadImages} from "../utils/uploadImages";
 
 interface AddTweetFormProps {
     classes: ReturnType<typeof useHomeStyles>;
     maxRows?: number;
+}
+
+export interface ImageObj {
+    blobUrl: string,
+    file: File
 }
 
 const MAX_LENGTH = 280;
@@ -37,12 +40,21 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
             setText(e.currentTarget.value);
         }
     };
+    const [images, setImages] = React.useState<ImageObj[]>([])
 
+    const handleClickAddTweet = async (): Promise<void> => {
+        const result = []
+        dispatch(SetAddFormState(AddFormState.LOADING))
+        for (let i = 0; i < images.length; i++) {
+            const file = images[i].file
+            const {url} = await uploadImages((file))
+            result.push(url)
 
-    const handleClickAddTweet = (): void => {
+        }
 
-        dispatch(fetchAddTweet(text))
+      dispatch(fetchAddTweet({text , images:result}))
         setText('');
+        setImages([])
 
     };
 
@@ -65,8 +77,8 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
             </div>
             <div className={classes.addFormBottom}>
                 <div className={classNames(classes.tweetFooter, classes.addFormBottomActions)}>
-                    <UploadImages/>
-               {/*     <IconButton color="primary">
+                    <UploadImages images={images} onChangesImages={(images): void => setImages(images)}/>
+                    {/*     <IconButton color="primary">
                         <EmojiIcon style={{fontSize: 26}}/>
                     </IconButton>*/}
                 </div>
@@ -101,9 +113,9 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
                     </Button>
                 </div>
             </div>
-            { addFormState === AddFormState.ERROR &&
+            {addFormState === AddFormState.ERROR &&
             <Alert severity="error">
-            Произошла ошибка ,невозможно добавить твит!!!
+                Произошла ошибка ,невозможно добавить твит!!!
             </Alert>}
         </div>
     );

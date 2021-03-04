@@ -33,7 +33,9 @@ export interface SetAddFormActionInterface extends Action<TweetsActionType> {
 
 export interface FetchAddTweetActionInterface extends Action<TweetsActionType> {
     type: TweetsActionType.FETCH_ADD_TWEET;
-    payload: string
+    payload: {
+        text:string ,images:string[]
+    }
 }
 
 

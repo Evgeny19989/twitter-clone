@@ -28,7 +28,7 @@ export const setTweetLoading = (payload:LoadingStatus):SetTweetLoadingInterface 
     payload
 })
 
-export const fetchAddTweet = (payload:string): FetchAddTweetActionInterface => ({
+export const fetchAddTweet = (payload: { text:string ,images:string[] }): FetchAddTweetActionInterface => ({
     type: TweetsActionType.FETCH_ADD_TWEET,
     payload,
 });

@@ -81,6 +81,14 @@ export const useStyles = makeStyles((theme) => ({
         marginBottom: 18,
     },
 
+    imageIconRemove:{
+        position:'relative',
+        top:'-60px',
+        right:'-40px',
+        padding:"3px!important",
+        background:"#ff4d4d!important",
+    }
+
 
 }))
 

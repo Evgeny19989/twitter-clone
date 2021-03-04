@@ -1,7 +1,6 @@
-
 import {LoadingStatus} from "../../tweets/contracts/state";
 
-export interface User{
+export interface User {
     _id?: string;
     email: string;
     fullname: string;
@@ -15,7 +14,7 @@ export interface User{
 }
 
 export interface userState {
-data:User | undefined,
-    status:LoadingStatus
+    data: User | undefined,
+    status: LoadingStatus
 }
 

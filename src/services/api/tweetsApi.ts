@@ -17,8 +17,10 @@ interface Response<T>{
          const { data} =  await axios.get<Response<Tweet>>(`/tweets/` + id)
          return data.data
      },
-     async addTweetData(payload:string):Promise<Tweet>{
-         const { data} = await axios.post<Response<Tweet>>(`/tweets`, {text:payload})
+     async addTweetData(payload:{
+         text:string ,images:string[]
+     }):Promise<Tweet>{
+         const { data} = await axios.post<Response<Tweet>>(`/tweets`, payload)
          return data.data
      }
  }

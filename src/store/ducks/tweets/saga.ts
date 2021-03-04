@@ -23,12 +23,12 @@ export function* fetchTweetsRequest() {
 }
 
 
-export function* fetchAddTweetRequest({payload:text}: FetchAddTweetActionInterface) {
+export function* fetchAddTweetRequest({payload}: FetchAddTweetActionInterface) {
 
 
     try {
 
-        const item = yield call(TweetsApi.addTweetData, text)
+        const item = yield call(TweetsApi.addTweetData, payload)
         yield put(AddTweet(item))
     } catch
         (error) {
