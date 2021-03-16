@@ -1,9 +1,10 @@
-import React from 'react';
-import classNames from 'classnames';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+
+import React from 'react';
+import classNames from 'classnames';
 import {useHomeStyles} from '../pages/Home/theme';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAddTweet, SetAddFormState} from '../store/ducks/tweets/actionCreators';

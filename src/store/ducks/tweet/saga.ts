@@ -12,22 +12,17 @@ import {FetchAddTweetDataActionInterface, TweetActionsType} from './contracts/Ac
 
 
 export function* fetchTweetRequest({payload: tweetId}: FetchAddTweetDataActionInterface) {
-
     try {
-
         const data = yield call(TweetsApi.fetchTweetData, tweetId)
         yield put(SetTweet(data))
     } catch (error) {
         yield put(setTweetLoading(LoadingStatus.ERROR))
     }
-
-
 }
 
 
-
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
-    export function* tweetSaga() {
-        yield takeEvery(TweetActionsType.FETCH_ADD_DATA, fetchTweetRequest)
-    }
+export function* tweetSaga() {
+    yield takeEvery(TweetActionsType.FETCH_ADD_DATA, fetchTweetRequest)
+}
 

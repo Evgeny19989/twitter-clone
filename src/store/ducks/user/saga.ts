@@ -3,7 +3,6 @@ import {AuthApi} from "../../../services/api/authApi";
 import {
     FetchSignInActionInterface,
     FetchSignUpActionInterface,
-    FetchUserDataActionInterface,
     UserActionType
 } from './contracts/ActionTypes';
 import {setUserData, setUserLoadingStatus} from "./actionCreators";

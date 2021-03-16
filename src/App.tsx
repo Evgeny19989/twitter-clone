@@ -6,7 +6,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectISAuth, selectUserStatus} from "./store/ducks/user/selectors";
 import {LoadingStatus} from './store/ducks/tweets/contracts/state';
 import {fetchUserData} from './store/ducks/user/actionCreators';
-import {CircularProgress} from "@material-ui/core";
 import TwitterIcon from "@material-ui/icons/Twitter";
 
 
@@ -24,34 +23,32 @@ function App() {
 
     React.useEffect(() => {
         if (!Auth && isReady) {
-            history.push('/signin')
-        }else if (history.location.pathname === '/') {
-            history.push('/home');
-        }else{
+            history.push('/signin');
+        } else if (history.location.pathname === '/') {
             history.push('/home');
         }
 
 
+
     }, [Auth, isReady])
+    if (!isReady) {
+        return (
+            <div style={{position:"absolute" , left:'50%' ,top:'40%'}}>
+                <TwitterIcon color="primary" style={{ width: 80, height: 80 }} />
+            </div>
+
+        );
+    }
 
 
     return (
 
 
         <div className="App">
-            {isReady ?
                 <Switch>
                     <Route exact path='/signin' component={SignIn}/>
                     <Route path='/home' component={Home}/>
                 </Switch>
-                :
-                <div style={{position:"absolute" , left:'50%' ,top:'40%'}}>
-                    <TwitterIcon color="primary" style={{ width: 80, height: 80 }} />
-                </div>
-
-            }
-
-
         </div>
     );
 }

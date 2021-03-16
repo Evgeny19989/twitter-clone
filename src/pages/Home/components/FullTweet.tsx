@@ -1,43 +1,51 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import classNames from 'classnames';
-import format from 'date-fns/format';
-import ruLang from 'date-fns/locale/ru';
 import CommentIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
 import RepostIcon from '@material-ui/icons/RepeatOutlined';
 import LikeIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ShareIcon from '@material-ui/icons/ReplyOutlined';
+import Avatar from '@material-ui/core/Avatar';
+import Paper from '@material-ui/core/Paper';
 import {Divider, IconButton} from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+
+import classNames from 'classnames';
+import {useHomeStyles} from '../theme';
+
+import format from 'date-fns/format';
+import ruLang from 'date-fns/locale/ru';
+
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
-import {useHomeStyles} from '../theme';
+
 import {FetchAddTweet, SetTweet} from "../../../store/ducks/tweet/actionCreators";
 import {selectTweetData, selectIsTweetLoading} from "../../../store/ducks/tweet/selectors";
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 export const FullTweet: React.FC = (): React.ReactElement | null => {
+
     const classes = useHomeStyles();
-    const dispatch = useDispatch();
-    const params: { id?: string } = useParams();
     const isLoading = useSelector(selectIsTweetLoading);
+
+    const dispatch = useDispatch();
+
+    const params: { id?: string } = useParams();
+
     const id = params.id;
     const tweetData = useSelector(selectTweetData)
+
     React.useEffect(() => {
         if (id) {
             dispatch(FetchAddTweet(id))
         }
-
         return () => {
             dispatch(SetTweet(undefined));
         }
     }, [dispatch, id])
+
     if (!tweetData) {
         return null
     }
-
 
     if (isLoading) {
         return (
@@ -46,7 +54,6 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
             </div>
         );
     }
-
 
     if (tweetData) {
         return (
@@ -66,8 +73,8 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
                     </div>
                     <Typography className={classes.fullTweetText} gutterBottom>
                         {tweetData.text}
-                        {tweetData.images && tweetData.images.map(el =>{
-                            return <img style={{width:'100%'}} src={el} key={el} alt=""/>
+                        {tweetData.images && tweetData.images.map(el => {
+                            return <img style={{width: '100%'}} src={el} key={el} alt=""/>
                         })}
                         <div className="tweet-images">
                             <Typography>
@@ -77,7 +84,6 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
                                 <span className={classes.tweetUserName}>
               {format(new Date(tweetData.createdAt), 'dd MMM. yyyy г.', {locale: ruLang})}
             </span>
-
                             </Typography>
                         </div>
                         <Typography>
@@ -85,10 +91,8 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
                     </Typography>
                     <Typography>
             <span className={classes.tweetUserName}>
-
             </span>
                         <span className={classes.tweetUserName}>
-
             </span>
                     </Typography>
                     <div className={classNames(classes.tweetFooter, classes.fullTweetFooter)}>
@@ -107,16 +111,8 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
                     </div>
                 </Paper>
                 <Divider/>
-
-                {/*
-              СДЕЛАТЬ ВЫВОД ВСЕХ ТВИТОВ
-              <Tweet {...tweetData}
-
-                       classes={classes}
-                />*/}
             </>
         );
-
     }
     return null
 };

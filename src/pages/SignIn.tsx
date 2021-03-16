@@ -1,14 +1,12 @@
-import React, {ReactElement} from "react";
 import {makeStyles, Typography} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import Button from "@material-ui/core/Button";
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import {ModalBlock} from '../components/ModalBlock';
+
+import React, {ReactElement} from "react";
+
 import {LoginModal} from "./Signin/components/LoginModal";
 import {RegisterModal} from "./Signin/components/RegisterModal";
 
@@ -81,19 +79,18 @@ export const useStyles = makeStyles((theme) => ({
         marginBottom: 18,
     },
 
-    imageIconRemove:{
-        position:'relative',
-        top:'-60px',
-        right:'-40px',
-        padding:"3px!important",
-        background:"#ff4d4d!important",
+    imageIconRemove: {
+        position: 'relative',
+        top: '-60px',
+        right: '-40px',
+        padding: "3px!important",
+        background: "#ff4d4d!important",
     }
 
 
 }))
 
 export const SignIn: React.FC = (): ReactElement => {
-
 
     const classes = useStyles()
     const [visibleModal, setVisibleModal] = React.useState<'signIn' | 'signUp'>();
@@ -109,7 +106,6 @@ export const SignIn: React.FC = (): ReactElement => {
     const handleCloseModal = (): void => {
         setVisibleModal(undefined);
     };
-
 
     return (
         <div className={classes.wrapper}>
@@ -127,14 +123,12 @@ export const SignIn: React.FC = (): ReactElement => {
                         Присоединяйтесь к общению</Typography></li>
                 </ul>
             </div>
-
             <div className={classes.loginSide}>
                 <div className={classes.loginSideWrapper}>
                     <TwitterIcon className={classes.loginSideTwitterIcon} color='primary'/>
                     <Typography className={classes.loginSideTitle} variant='h4'>Узнайте, что происходит в мире прямо
                         сейчас</Typography>
                     <Typography>
-
                         <b>
                             Присоединяйтесь к Твиттеру прямо сейчас</b></Typography>
                     <br/>
@@ -143,13 +137,10 @@ export const SignIn: React.FC = (): ReactElement => {
                     <Button onClick={handleClickOpenSignIn} variant='outlined' color='primary' fullWidth>Войти </Button>
                 </div>
             </div>
-
             <LoginModal open={visibleModal === 'signIn'} onClose={handleCloseModal}/>
             <RegisterModal open={visibleModal === 'signUp'} onClose={handleCloseModal}/>
         </div>
-
     );
 }
-
 
 export default SignIn;
